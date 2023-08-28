@@ -1,0 +1,22 @@
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  password  String
+}
+
+model Acronym {
+  id    Int     @id @default(autoincrement())
+  acronym String
+  word  String
+}
