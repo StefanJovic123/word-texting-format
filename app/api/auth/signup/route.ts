@@ -22,9 +22,11 @@ async function signup(req: Request) {
   return { data: user };
 }
 
-signup.schema = joi.object({
-  email: joi.string().email().required(),
-  password: joi.string().min(3).required(),
-});
+signup.validationSchemes = {
+  body: joi.object({
+    email: joi.string().email().required(),
+    password: joi.string().min(3).required(),
+  })
+};
 
 module.exports = apiHandler({ POST: signup });

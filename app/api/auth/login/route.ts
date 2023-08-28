@@ -23,9 +23,11 @@ async function login(req: Request) {
   };
 }
 
-login.schema = joi.object({
-  email: joi.string().email().required(),
-  password: joi.string().min(3).required(),
-});
+login.validationSchemes = {
+  body: joi.object({
+    email: joi.string().email().required(),
+    password: joi.string().min(3).required(),
+  })
+};
 
 module.exports = apiHandler({ POST: login });
